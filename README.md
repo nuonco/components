@@ -9,5 +9,6 @@ Library of common components for use with nuon apps.
 ├── README.md
 └── aws
     ├── certificate
+    ├── kubectl-manifest
     └── rds-cluster
 ```

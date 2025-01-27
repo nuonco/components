@@ -2,12 +2,8 @@ locals {
   subnet_ids = split(",", replace(replace(var.subnet_ids, " ", ""), "\n", ""))
 }
 
-resource "aws_vpc" "mainvpc" {
-  cidr_block = "10.128.0.0/16"
-}
-
 resource "aws_default_security_group" "default" {
-  vpc_id = aws_vpc.mainvpc.id
+  vpc_id = var.vpc_id
   ingress {
     from_port   = 5432
     cidr_blocks = ["0.0.0.0/0"]

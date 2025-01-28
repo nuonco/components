@@ -20,7 +20,7 @@ terraform_version = "1.9.3"
 
 [public_repo]
 repo      = "nuonco/components"
-directory = "kubectl-manifest"
+directory = "aws/kubectl-manifest"
 branch    = "main"
 
 [vars]

@@ -21,8 +21,7 @@ output "namespace" {
 }
 
 output "yaml_incluster" {
-  value     = yamldecode(kubectl_manifest.manifest.yaml_incluster)
-  sensitive = true
+  value = yamldecode(kubectl_manifest.manifest.yaml_incluster)
 }
 
 output "live_manifest_incluster" {

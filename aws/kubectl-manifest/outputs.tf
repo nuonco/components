@@ -20,8 +20,14 @@ output "namespace" {
   value = kubectl_manifest.manifest.namespace
 }
 
+output "yaml_incluster_raw" {
+  value     = kubectl_manifest.manifest.yaml_incluster
+  sensitive = true
+}
+
 output "yaml_incluster" {
-  value = yamldecode(kubectl_manifest.manifest.yaml_incluster)
+  value     = yamldecode(kubectl_manifest.manifest.yaml_incluster)
+  sensitive = true
 }
 
 output "live_manifest_incluster" {

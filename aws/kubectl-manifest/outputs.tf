@@ -20,8 +20,8 @@ output "namespace" {
   value = kubectl_manifest.manifest.namespace
 }
 
-output "yaml_cluster" {
-  value     = yamldecode(kubectl_manifest.manifest.yaml_cluster)
+output "yaml_incluster" {
+  value     = yamldecode(kubectl_manifest.manifest.yaml_incluster)
   sensitive = true
 }
 

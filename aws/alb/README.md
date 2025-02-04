@@ -12,6 +12,7 @@ Certificate Manager SSL Certificate via the
 | `domain`             | The ID of the zone. Can be sourced from the sandbox.    | `{{.nuon.install.sandbox.outputs.public_domain.name}}`                   |
 | `domain_certificate` | AWS Cerficate Manager Certificate ARN.                  | `{{.nuon.components.certificate.outputs.public_domain_certificate_arn}}` |
 | `service_name`       | The name of the service this ingress routes traffic to. | `api`                                                                    |
+| `https_port`         | port to use for https. default: `443`                   | `443`                                                                    |
 
 ## Example Configuration
 

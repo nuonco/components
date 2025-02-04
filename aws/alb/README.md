@@ -1,6 +1,7 @@
 # ALB
 
-Component to provision an ingress w/ annotations to make use of an AWS Certificate Manager SSL Certificate via the
+Component to provision an ingress w/ annotations to make use of an AWS
+Certificate Manager SSL Certificate via the
 ['certificate' component](../certificate).
 
 ## Inputs/Variables
@@ -19,9 +20,9 @@ name       = "application_load_balancer"
 type       = "helm_chart"
 chart_name = "application-load-balancer"
 
-[connected_repo]
-directory = "aws/alb"
+[public_repo]
 repo      = "nuonco/components"
+directory = "aws/alb"
 branch    = "main"
 
 [values]
@@ -33,5 +34,6 @@ domain             = "api.{{.nuon.install.sandbox.outputs.public_domain.name}}"
 
 ## Note
 
-This component depends on outputs of the [`certificate` component](../certificate). It is important to note, the
+This component depends on outputs of the
+[`certificate` component](../certificate). It is important to note, the
 `domain_name` of the certificate component should match the `domain` value here.

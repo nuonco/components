@@ -15,6 +15,8 @@ Certificate Manager SSL Certificate via the
 | `https_port`         | port to use for https. default: `443`                   | `443`                                                                    |
 | `healthcheck_path`   | healthcheck path                                        | `/livez`, `/readyz`, `/ping`                                             |
 
+Note: if no `healtcheck_path` is provided the default `/livez` will be used.
+
 ## Example Configuration
 
 ```toml

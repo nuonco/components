@@ -27,8 +27,7 @@ module "db" {
 
   # NOTE(fd): for this PoC, we use this method
   # long-term, we'll rely on the managed pw in AWS Secrets Manager
-  password                    = var.db_password
-  manage_master_user_password = false
+  manage_master_user_password = true
 
   deletion_protection = false
 

@@ -1,3 +1,18 @@
+# network dtails
+variable "vpc_id" {
+  type = string
+}
+
+variable "subnet_ids" {
+  type        = string
+  description = "Comma-delimited string of subnet ids to be split for use in this tf."
+}
+
+variable "subnet_group_id" {
+  type = string
+}
+
+# databse details
 variable "identifier" {
   type = string
 }
@@ -15,14 +30,4 @@ variable "db_user" {
   type = string
 }
 
-variable "subnet_ids" {
-  type = string
-}
 
-variable "security_group" {
-  type = string
-}
-
-variable "vpc_id" {
-  type = string
-}

@@ -1,6 +1,7 @@
 install_name: ""
 domain: ""
 domain_certificate: ""
-service_name: ""
 https_port: ""
+service_name: ""
+service_port: ""
 healthcheck_path: "/livez"

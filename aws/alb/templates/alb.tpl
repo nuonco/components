@@ -29,4 +29,4 @@ spec:
               service:
                 name: {{ .Values.service_name }}
                 port:
-                  number: 3000
+                  number: {{ .Values.service_port | default "3000" }}

@@ -11,9 +11,10 @@ Certificate Manager SSL Certificate via the
 | `install_name`       | Typically, the install id.                              | `{{.nuon.install.id}}`                                                   |
 | `domain`             | The ID of the zone. Can be sourced from the sandbox.    | `{{.nuon.install.sandbox.outputs.public_domain.name}}`                   |
 | `domain_certificate` | AWS Cerficate Manager Certificate ARN.                  | `{{.nuon.components.certificate.outputs.public_domain_certificate_arn}}` |
+| `https_port`         | port to use for https.                                  | `443` (default: `443`)                                                   |
 | `service_name`       | The name of the service this ingress routes traffic to. | `api`                                                                    |
-| `https_port`         | port to use for https. default: `443`                   | `443`                                                                    |
-| `healthcheck_path`   | healthcheck path                                        | `/livez`, `/readyz`, `/ping`                                             |
+| `service_port`       | The port of the service this ingress routes traffic to. | `3000` (default: `3000`)                                                 |
+| `healthcheck_path`   | healthcheck path                                        | `/livez`, `/readyz`, `/health` (default: `/livez`)                       |
 
 Note: if no `healtcheck_path` is provided the default `/livez` will be used.
 
@@ -30,10 +31,12 @@ directory = "aws/alb"
 branch    = "main"
 
 [values]
-service_name       = "api"
-install_name       = "{{.nuon.install.id}}"
 domain_certificate = "{{.nuon.components.certificate.outputs.public_domain_certificate_arn}}"
 domain             = "api.{{.nuon.install.sandbox.outputs.public_domain.name}}"
+https_port         = "443"
+service_name       = "api"
+service_port       = "api"
+install_name       = "{{.nuon.install.id}}"
 ```
 
 ## Note

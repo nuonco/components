@@ -5,11 +5,12 @@ locals {
 // docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
 resource "aws_security_group" "allow_psql" {
   vpc_id      = var.vpc_id
-  name        = "allow_psql"
-  description = "Allow PSQL inbound traffic and all outbound traffic"
+  name        = "allow_psql_${var.identifier}"
+  description = "${var.identifier}: Allow PSQL inbound traffic and all outbound traffic"
 
   tags = {
-    Name = "allow_psql"
+    Name       = "allow_psql_${var.identifier}"
+    Identifier = var.identifier
   }
 
   ingress {

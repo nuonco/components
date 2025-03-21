@@ -9,7 +9,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":{{ .Values.https_port | default "443" }}}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":{{ .Values.https_port | default "443" }}}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '{{ .Values.https_port | default "443" }}'
     alb.ingress.kubernetes.io/aws-load-balancer-ssl-ports: https
     alb.ingress.kubernetes.io/healthcheck-path: {{ .Values.healthcheck_path | default "/livez" | quote }}
     alb.ingress.kubernetes.io/healthcheck-interval-seconds: '5'

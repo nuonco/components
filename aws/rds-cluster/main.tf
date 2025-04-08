@@ -19,7 +19,7 @@ module "db" {
   engine            = "postgres"
   family            = "postgres15"
   engine_version    = "15"
-  instance_class    = "db.t4g.micro"
+  instance_class    = var.instance_class
   allocated_storage = 5
   db_name           = var.db_name
   username          = var.db_user

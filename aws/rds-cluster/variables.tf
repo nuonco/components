@@ -7,6 +7,11 @@ variable "port" {
   default = "5432"
 }
 
+variable "instance_class" {
+  type    = string
+  default = "db.t4g.micro"
+}
+
 variable "db_name" {
   type = string
 }

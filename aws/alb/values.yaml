@@ -1,4 +1,6 @@
 install_name: ""
+
+name: ""
 domain: ""
 domain_certificate: ""
 https_port: ""

@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.install_name }}-public
+  name: {{ include "common.name" . }}
   namespace: {{ .Values.install_name }}
   labels:
     app.nuon.co/install: {{ .Values.install_name }}

@@ -9,6 +9,7 @@ Certificate Manager SSL Certificate via the
 | Variable             | Description                                             | Example                                                                  |
 | -------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `install_name`       | Typically, the install id.                              | `{{.nuon.install.id}}`                                                   |
+| `name`               | The name for the ingress.                               | `service-name`, `api`, ``                                                |
 | `domain`             | The ID of the zone. Can be sourced from the sandbox.    | `{{.nuon.install.sandbox.outputs.public_domain.name}}`                   |
 | `domain_certificate` | AWS Cerficate Manager Certificate ARN.                  | `{{.nuon.components.certificate.outputs.public_domain_certificate_arn}}` |
 | `https_port`         | port to use for https.                                  | `443` (default: `443`)                                                   |
@@ -16,7 +17,10 @@ Certificate Manager SSL Certificate via the
 | `service_port`       | The port of the service this ingress routes traffic to. | `3000` (default: `3000`)                                                 |
 | `healthcheck_path`   | healthcheck path                                        | `/livez`, `/readyz`, `/health` (default: `/livez`)                       |
 
-Note: if no `healtcheck_path` is provided the default `/livez` will be used.
+Notes
+
+- if no `name` is provided, `{install_name}-pubulic` will be used.
+- if no `healtcheck_path` is provided the default `/livez` will be used.
 
 ## Example Configuration
 

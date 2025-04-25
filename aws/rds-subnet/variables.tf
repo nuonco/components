@@ -1,9 +1,10 @@
 locals {
   tags = {
     "install.nuon.co/id"     = var.install_id
-    "component.nuon.co/name" = "rds-cluster"
+    "component.nuon.co/name" = "rds-subnet"
   }
 }
+
 variable "region" {
   type = string
 }

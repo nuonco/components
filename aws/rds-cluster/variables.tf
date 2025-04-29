@@ -1,8 +1,8 @@
 locals {
   subnet_ids = split(",", trim(replace(var.subnet_ids, " ", ","), "[]"))
   tags = {
-    "install.nuon.co/id"     = var.nuon_id
     "component.nuon.co/name" = "rds-cluster"
+    "install.nuon.co/id"     = var.nuon_id
   }
 }
 # network details
@@ -39,5 +39,13 @@ variable "db_name" {
 }
 
 variable "db_user" {
+  type = string
+}
+
+variable "nuon_id" {
+  type = string
+}
+
+variable "region" {
   type = string
 }

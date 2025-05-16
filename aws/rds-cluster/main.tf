@@ -1,41 +1,24 @@
-locals {
-  subnet_ids = split(",", replace(replace(var.subnet_ids, " ", ""), "\n", ""))
-}
-
-resource "aws_default_security_group" "default" {
-  vpc_id = var.vpc_id
-  ingress {
-    from_port   = 5432
-    cidr_blocks = ["0.0.0.0/0"]
-    to_port     = 5432
-    protocol    = "tcp"
-  }
-}
-
 module "db" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier        = var.identifier
-  engine            = "postgres"
-  family            = "postgres15"
-  engine_version    = "15"
-  instance_class    = var.instance_class
-  allocated_storage = 5
-  db_name           = var.db_name
-  username          = var.db_user
-  port              = var.port
+  identifier                  = var.identifier
+  engine                      = "postgres"
+  family                      = "postgres15"
+  engine_version              = "15"
+  instance_class              = var.instance_class
+  allocated_storage           = 5
+  db_name                     = var.db_name
+  port                        = var.port
+  username                    = var.db_user
+  manage_master_user_password = true
 
-  # NOTE(fd): for this PoC, we use this method
-  # long-term, we'll rely on the managed pw in AWS Secrets Manager
-  password                    = var.db_password
-  manage_master_user_password = false
-
-  deletion_protection = false
+  deletion_protection    = false
+  create_db_subnet_group = false
 
   multi_az               = false
-  create_db_subnet_group = true
   subnet_ids             = local.subnet_ids
-  vpc_security_group_ids = [var.security_group]
+  db_subnet_group_name   = var.subnet_group_id
+  vpc_security_group_ids = [resource.aws_security_group.allow_psql.id]
 
   parameters = [
     {
@@ -45,5 +28,5 @@ module "db" {
     }
   ]
 
-  depends_on = [resource.aws_default_security_group.default]
+  depends_on = [resource.aws_security_group.allow_psql]
 }

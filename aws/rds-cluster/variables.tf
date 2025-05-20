@@ -1,6 +1,7 @@
 locals {
   subnet_ids                          = split(",", trim(replace(var.subnet_ids, " ", ","), "[]"))
   iam_database_authentication_enabled = contains(["true", "1"], var.iam_database_authentication_enabled)
+  deletion_protection                 = contains(["true", "1"], var.deletion_protection)
   tags = {
     "component.nuon.co/name" = "rds-cluster"
     "install.nuon.co/id"     = var.nuon_id
@@ -62,4 +63,10 @@ variable "iam_database_authentication_enabled" {
   type        = string
   description = "Whether or not the enable RDS IAM authentication."
   default     = "true"
+}
+
+variable "deletion_protection" {
+  type        = string
+  description = "Whether or not the enable deletion protection."
+  default     = "false"
 }

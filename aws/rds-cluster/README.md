@@ -29,18 +29,20 @@ Component to create an postgres RDS cluster.
 
 ## Inputs
 
-| Name                                                                           | Description                                                          | Type     | Default          | Required |
-| ------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ---------------- | :------: |
-| <a name="input_db_name"></a> [db_name](#input_db_name)                         | The name of the default database.                                    | `string` | n/a              |   yes    |
-| <a name="input_db_user"></a> [db_user](#input_db_user)                         | The name of the admin user.                                          | `string` | n/a              |   yes    |
-| <a name="input_identifier"></a> [identifier](#input_identifier)                | Human friendly (ish) identifier for the cluster.                     | `string` | n/a              |   yes    |
-| <a name="input_instance_class"></a> [instance_class](#input_instance_class)    | n/a                                                                  | `string` | `"db.t4g.micro"` |    no    |
-| <a name="input_nuon_id"></a> [nuon_id](#input_nuon_id)                         | The Nuon Install ID ({{ .nuon.install.id }}.                         | `string` | n/a              |   yes    |
-| <a name="input_port"></a> [port](#input_port)                                  | n/a                                                                  | `string` | `"5432"`         |    no    |
-| <a name="input_region"></a> [region](#input_region)                            | The AWS region ({{ .nuon.install\_stack.outputs.region }}.           | `string` | n/a              |   yes    |
-| <a name="input_subnet_group_id"></a> [subnet_group_id](#input_subnet_group_id) | The RDS subnet group for this RDS Cluster.                           | `string` | n/a              |   yes    |
-| <a name="input_subnet_ids"></a> [subnet_ids](#input_subnet_ids)                | Comma-delimited string of subnet ids to be split for use in this tf. | `string` | n/a              |   yes    |
-| <a name="input_vpc_id"></a> [vpc_id](#input_vpc_id)                            | network details                                                      | `string` | n/a              |   yes    |
+| Name                                                                                                                                       | Description                                                          | Type     | Default          | Required |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ---------------- | :------: |
+| <a name="input_db_name"></a> [db_name](#input_db_name)                                                                                     | The name of the default database.                                    | `string` | n/a              |   yes    |
+| <a name="input_db_user"></a> [db_user](#input_db_user)                                                                                     | The name of the admin user.                                          | `string` | n/a              |   yes    |
+| <a name="input_deletion_protection"></a> [deletion_protection](#input_deletion_protection)                                                 | Whether or not the enable deletion protection.                       | `string` | `"false"`        |    no    |
+| <a name="input_iam_database_authentication_enabled"></a> [iam_database_authentication_enabled](#input_iam_database_authentication_enabled) | Whether or not the enable RDS IAM authentication.                    | `string` | `"true"`         |    no    |
+| <a name="input_identifier"></a> [identifier](#input_identifier)                                                                            | Human friendly (ish) identifier for the cluster.                     | `string` | n/a              |   yes    |
+| <a name="input_instance_class"></a> [instance_class](#input_instance_class)                                                                | n/a                                                                  | `string` | `"db.t4g.micro"` |    no    |
+| <a name="input_nuon_id"></a> [nuon_id](#input_nuon_id)                                                                                     | The Nuon Install ID ({{ .nuon.install.id }}.                         | `string` | n/a              |   yes    |
+| <a name="input_port"></a> [port](#input_port)                                                                                              | n/a                                                                  | `string` | `"5432"`         |    no    |
+| <a name="input_region"></a> [region](#input_region)                                                                                        | The AWS region ({{ .nuon.install\_stack.outputs.region }}.           | `string` | n/a              |   yes    |
+| <a name="input_subnet_group_id"></a> [subnet_group_id](#input_subnet_group_id)                                                             | The RDS subnet group for this RDS Cluster.                           | `string` | n/a              |   yes    |
+| <a name="input_subnet_ids"></a> [subnet_ids](#input_subnet_ids)                                                                            | Comma-delimited string of subnet ids to be split for use in this tf. | `string` | n/a              |   yes    |
+| <a name="input_vpc_id"></a> [vpc_id](#input_vpc_id)                                                                                        | network details                                                      | `string` | n/a              |   yes    |
 
 ## Outputs
 
@@ -64,14 +66,16 @@ repo      = "nuonco/components"
 branch    = "main"
 
 [vars]
-port           = "5432"
-identifier     = "{{.nuon.install.id}}"
-db_name        = "production"
-db_user        = "production"
-db_password    = "{{.nuon.install.inputs.db_password}}"
-subnet_ids     = "{{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 0}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 1}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 2}}"
-security_group = "{{.nuon.install.sandbox.outputs.vpc.default_security_group_id}}"
-vpc_id         = "{{.nuon.install.sandbox.outputs.vpc.id}}"
+port                                = "5432"
+identifier                          = "{{.nuon.install.id}}"
+db_name                             = "production"
+db_user                             = "production"
+db_password                         = "{{.nuon.install.inputs.db_password}}"
+subnet_ids                          = "{{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 0}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 1}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 2}}"
+security_group                      = "{{.nuon.install.sandbox.outputs.vpc.default_security_group_id}}"
+vpc_id                              = "{{.nuon.install.sandbox.outputs.vpc.id}}"
+iam_database_authentication_enabled = "true"
+deletion_protection                 = "true"
 ```
 
 ### Notes

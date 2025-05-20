@@ -13,9 +13,9 @@ module "db" {
   username                    = var.db_user
   manage_master_user_password = true
 
-  iam_database_authentication_enabled = true
+  iam_database_authentication_enabled = local.iam_database_authentication_enabled
 
-  deletion_protection    = false
+  deletion_protection    = local.deletion_protection
   create_db_subnet_group = false
 
   multi_az               = false

@@ -14,3 +14,6 @@ output "db_instance_resource_id" {
   value = module.db.db_instance_resource_id
 }
 
+output "db_instance_port" {
+  value = module.db.db_instance_port
+}

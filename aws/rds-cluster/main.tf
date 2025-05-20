@@ -1,16 +1,19 @@
 module "db" {
   source = "terraform-aws-modules/rds/aws"
 
-  identifier                  = var.identifier
-  engine                      = "postgres"
-  family                      = "postgres15"
-  engine_version              = "15"
-  instance_class              = var.instance_class
-  allocated_storage           = 5
-  db_name                     = var.db_name
-  port                        = var.port
+  identifier        = var.identifier
+  engine            = "postgres"
+  family            = "postgres15"
+  engine_version    = "15"
+  instance_class    = var.instance_class
+  allocated_storage = 5
+  port              = var.port
+  db_name           = var.db_name
+
   username                    = var.db_user
   manage_master_user_password = true
+
+  iam_database_authentication_enabled = true
 
   deletion_protection    = false
   create_db_subnet_group = false

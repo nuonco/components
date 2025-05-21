@@ -2,6 +2,7 @@ locals {
   subnet_ids                          = split(",", trim(replace(var.subnet_ids, " ", ","), "[]"))
   iam_database_authentication_enabled = contains(["true", "1"], var.iam_database_authentication_enabled)
   deletion_protection                 = contains(["true", "1"], var.deletion_protection)
+  apply_immediately                   = contains(["true", "1"], var.apply_immediately)
   tags = {
     "component.nuon.co/name" = "rds-cluster"
     "install.nuon.co/id"     = var.nuon_id
@@ -70,3 +71,10 @@ variable "deletion_protection" {
   description = "Whether or not the enable deletion protection."
   default     = "false"
 }
+
+variable "apply_immediately" {
+  type        = string
+  description = "Set to true if the changes should be applied immediately."
+  default     = "false"
+}
+

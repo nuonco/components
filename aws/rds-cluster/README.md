@@ -31,6 +31,7 @@ Component to create an postgres RDS cluster.
 
 | Name                                                                                                                                       | Description                                                          | Type     | Default          | Required |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ---------------- | :------: |
+| <a name="input_apply_immediately"></a> [apply_immediately](#input_apply_immediately)                                                       | Set to true if the changes should be applied immediately.            | `string` | `"false"`        |    no    |
 | <a name="input_db_name"></a> [db_name](#input_db_name)                                                                                     | The name of the default database.                                    | `string` | n/a              |   yes    |
 | <a name="input_db_user"></a> [db_user](#input_db_user)                                                                                     | The name of the admin user.                                          | `string` | n/a              |   yes    |
 | <a name="input_deletion_protection"></a> [deletion_protection](#input_deletion_protection)                                                 | Whether or not the enable deletion protection.                       | `string` | `"false"`        |    no    |
@@ -50,6 +51,7 @@ Component to create an postgres RDS cluster.
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | <a name="output_address"></a> [address](#output_address)                                                                                  | n/a         |
 | <a name="output_db_instance_master_user_secret_arn"></a> [db_instance_master_user_secret_arn](#output_db_instance_master_user_secret_arn) | n/a         |
+| <a name="output_db_instance_port"></a> [db_instance_port](#output_db_instance_port)                                                       | n/a         |
 | <a name="output_db_instance_resource_id"></a> [db_instance_resource_id](#output_db_instance_resource_id)                                  | n/a         |
 | <a name="output_endpoint"></a> [endpoint](#output_endpoint)                                                                               | n/a         |
 
@@ -76,6 +78,7 @@ security_group                      = "{{.nuon.install.sandbox.outputs.vpc.defau
 vpc_id                              = "{{.nuon.install.sandbox.outputs.vpc.id}}"
 iam_database_authentication_enabled = "true"
 deletion_protection                 = "true"
+apply_immediately                   = "false"
 ```
 
 ### Notes

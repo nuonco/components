@@ -31,6 +31,7 @@ Component to create an postgres RDS cluster.
 
 | Name                                                                                                                                       | Description                                                          | Type     | Default          | Required |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ---------------- | :------: |
+| <a name="input_allocated_storage"></a> [allocated_storage](#input_allocated_storage)                                                       | Allocated storage                                                    | `string` | `100`            |    no    |
 | <a name="input_apply_immediately"></a> [apply_immediately](#input_apply_immediately)                                                       | Set to true if the changes should be applied immediately.            | `string` | `"false"`        |    no    |
 | <a name="input_db_name"></a> [db_name](#input_db_name)                                                                                     | The name of the default database.                                    | `string` | n/a              |   yes    |
 | <a name="input_db_user"></a> [db_user](#input_db_user)                                                                                     | The name of the admin user.                                          | `string` | n/a              |   yes    |
@@ -76,6 +77,7 @@ db_password                         = "{{.nuon.install.inputs.db_password}}"
 subnet_ids                          = "{{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 0}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 1}}, {{index .nuon.install.sandbox.outputs.vpc.private_subnet_ids 2}}"
 security_group                      = "{{.nuon.install.sandbox.outputs.vpc.default_security_group_id}}"
 vpc_id                              = "{{.nuon.install.sandbox.outputs.vpc.id}}"
+allocated_storage                   = "100"
 iam_database_authentication_enabled = "true"
 deletion_protection                 = "true"
 apply_immediately                   = "false"

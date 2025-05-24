@@ -78,3 +78,8 @@ variable "apply_immediately" {
   default     = "false"
 }
 
+variable "allocated_storage" {
+  type        = string
+  description = "Allocated storage"
+  default     = 100
+}

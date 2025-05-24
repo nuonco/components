@@ -6,7 +6,7 @@ module "db" {
   family            = "postgres15"
   engine_version    = "15"
   instance_class    = var.instance_class
-  allocated_storage = 5
+  allocated_storage = var.allocated_storage
   port              = var.port
   db_name           = var.db_name
 

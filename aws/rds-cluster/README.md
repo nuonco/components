@@ -29,22 +29,30 @@ Component to create an postgres RDS cluster.
 
 ## Inputs
 
-| Name                                                                                                                                       | Description                                                          | Type     | Default          | Required |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ---------------- | :------: |
-| <a name="input_allocated_storage"></a> [allocated_storage](#input_allocated_storage)                                                       | Allocated storage                                                    | `string` | `100`            |    no    |
-| <a name="input_apply_immediately"></a> [apply_immediately](#input_apply_immediately)                                                       | Set to true if the changes should be applied immediately.            | `string` | `"false"`        |    no    |
-| <a name="input_db_name"></a> [db_name](#input_db_name)                                                                                     | The name of the default database.                                    | `string` | n/a              |   yes    |
-| <a name="input_db_user"></a> [db_user](#input_db_user)                                                                                     | The name of the admin user.                                          | `string` | n/a              |   yes    |
-| <a name="input_deletion_protection"></a> [deletion_protection](#input_deletion_protection)                                                 | Whether or not the enable deletion protection.                       | `string` | `"false"`        |    no    |
-| <a name="input_iam_database_authentication_enabled"></a> [iam_database_authentication_enabled](#input_iam_database_authentication_enabled) | Whether or not the enable RDS IAM authentication.                    | `string` | `"true"`         |    no    |
-| <a name="input_identifier"></a> [identifier](#input_identifier)                                                                            | Human friendly (ish) identifier for the cluster.                     | `string` | n/a              |   yes    |
-| <a name="input_instance_class"></a> [instance_class](#input_instance_class)                                                                | n/a                                                                  | `string` | `"db.t4g.micro"` |    no    |
-| <a name="input_nuon_id"></a> [nuon_id](#input_nuon_id)                                                                                     | The Nuon Install ID ({{ .nuon.install.id }}.                         | `string` | n/a              |   yes    |
-| <a name="input_port"></a> [port](#input_port)                                                                                              | n/a                                                                  | `string` | `"5432"`         |    no    |
-| <a name="input_region"></a> [region](#input_region)                                                                                        | The AWS region ({{ .nuon.install\_stack.outputs.region }}.           | `string` | n/a              |   yes    |
-| <a name="input_subnet_group_id"></a> [subnet_group_id](#input_subnet_group_id)                                                             | The RDS subnet group for this RDS Cluster.                           | `string` | n/a              |   yes    |
-| <a name="input_subnet_ids"></a> [subnet_ids](#input_subnet_ids)                                                                            | Comma-delimited string of subnet ids to be split for use in this tf. | `string` | n/a              |   yes    |
-| <a name="input_vpc_id"></a> [vpc_id](#input_vpc_id)                                                                                        | network details                                                      | `string` | n/a              |   yes    |
+| Name                                                                                                                                       | Description                                                          | Type     | Default                 | Required |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------- | ----------------------- | :------: |
+| <a name="input_allocated_storage"></a> [allocated_storage](#input_allocated_storage)                                                       | Allocated storage                                                    | `string` | `100`                   |    no    |
+| <a name="input_apply_immediately"></a> [apply_immediately](#input_apply_immediately)                                                       | Set to true if the changes should be applied immediately.            | `string` | `"false"`               |    no    |
+| <a name="input_backup_retention_period"></a> [backup_retention_period](#input_backup_retention_period)                                     | Backup retention period.                                             | `string` | `"1"`                   |    no    |
+| <a name="input_backup_window"></a> [backup_window](#input_backup_window)                                                                   | Backup window.                                                       | `string` | `"03:00-06:00"`         |    no    |
+| <a name="input_db_name"></a> [db_name](#input_db_name)                                                                                     | The name of the default database.                                    | `string` | n/a                     |   yes    |
+| <a name="input_db_user"></a> [db_user](#input_db_user)                                                                                     | The name of the admin user.                                          | `string` | n/a                     |   yes    |
+| <a name="input_deletion_protection"></a> [deletion_protection](#input_deletion_protection)                                                 | Whether or not the enable deletion protection.                       | `string` | `"false"`               |    no    |
+| <a name="input_enabled_cloudwatch_logs_exports"></a> [enabled_cloudwatch_logs_exports](#input_enabled_cloudwatch_logs_exports)             | Enable cloudwatch log exports                                        | `string` | `"false"`               |    no    |
+| <a name="input_iam_database_authentication_enabled"></a> [iam_database_authentication_enabled](#input_iam_database_authentication_enabled) | Whether or not the enable RDS IAM authentication.                    | `string` | `"true"`                |    no    |
+| <a name="input_identifier"></a> [identifier](#input_identifier)                                                                            | Human friendly (ish) identifier for the cluster.                     | `string` | n/a                     |   yes    |
+| <a name="input_instance_class"></a> [instance_class](#input_instance_class)                                                                | n/a                                                                  | `string` | `"db.t4g.micro"`        |    no    |
+| <a name="input_maintenance_window"></a> [maintenance_window](#input_maintenance_window)                                                    | Maintenance window.                                                  | `string` | `"Mon:00:00-Mon:03:00"` |    no    |
+| <a name="input_multi_az"></a> [multi_az](#input_multi_az)                                                                                  | Enable multi-az.                                                     | `string` | `"false"`               |    no    |
+| <a name="input_nuon_id"></a> [nuon_id](#input_nuon_id)                                                                                     | The Nuon Install ID ({{ .nuon.install.id }}.                         | `string` | n/a                     |   yes    |
+| <a name="input_performance_insights_enabled"></a> [performance_insights_enabled](#input_performance_insights_enabled)                      | Enable performance insights                                          | `string` | `"false"`               |    no    |
+| <a name="input_port"></a> [port](#input_port)                                                                                              | n/a                                                                  | `string` | `"5432"`                |    no    |
+| <a name="input_region"></a> [region](#input_region)                                                                                        | The AWS region ({{ .nuon.install\_stack.outputs.region }}.           | `string` | n/a                     |   yes    |
+| <a name="input_skip_final_snapshot"></a> [skip_final_snapshot](#input_skip_final_snapshot)                                                 | Skip final snapshot.                                                 | `string` | `"false"`               |    no    |
+| <a name="input_storage_encrypted"></a> [storage_encrypted](#input_storage_encrypted)                                                       | Encrypt storage.                                                     | `string` | `"false"`               |    no    |
+| <a name="input_subnet_group_id"></a> [subnet_group_id](#input_subnet_group_id)                                                             | The RDS subnet group for this RDS Cluster.                           | `string` | n/a                     |   yes    |
+| <a name="input_subnet_ids"></a> [subnet_ids](#input_subnet_ids)                                                                            | Comma-delimited string of subnet ids to be split for use in this tf. | `string` | n/a                     |   yes    |
+| <a name="input_vpc_id"></a> [vpc_id](#input_vpc_id)                                                                                        | network details                                                      | `string` | n/a                     |   yes    |
 
 ## Outputs
 
@@ -81,6 +89,12 @@ allocated_storage                   = "100"
 iam_database_authentication_enabled = "true"
 deletion_protection                 = "true"
 apply_immediately                   = "false"
+multi_az                            = "false"
+performance_insights_enabled        = "true"
+enabled_cloudwatch_logs_exports     = "true"
+backup_retention_period             = "1"
+skip_final_snapshot                 = "false"
+storage_encrypted                   = "true"
 ```
 
 ### Notes

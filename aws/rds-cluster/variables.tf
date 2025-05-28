@@ -2,6 +2,11 @@ locals {
   subnet_ids                          = split(",", trim(replace(var.subnet_ids, " ", ","), "[]"))
   iam_database_authentication_enabled = contains(["true", "1"], var.iam_database_authentication_enabled)
   deletion_protection                 = contains(["true", "1"], var.deletion_protection)
+  multi_az                            = contains(["true", "1"], var.multi_az)
+  performance_insights_enabled        = contains(["true", "1"], var.performance_insights_enabled)
+  enabled_cloudwatch_logs_exports     = contains(["true", "1"], var.enabled_cloudwatch_logs_exports)
+  skip_final_snapshot                 = contains(["true", "1"], var.skip_final_snapshot)
+  storage_encrypted                   = contains(["true", "1"], var.storage_encrypted)
   apply_immediately                   = contains(["true", "1"], var.apply_immediately)
   tags = {
     "component.nuon.co/name" = "rds-cluster"
@@ -34,7 +39,7 @@ variable "subnet_group_id" {
   description = "The RDS subnet group for this RDS Cluster."
 }
 
-# databse details
+# database details
 variable "identifier" {
   type        = string
   description = "Human friendly (ish) identifier for the cluster."
@@ -82,4 +87,52 @@ variable "allocated_storage" {
   type        = string
   description = "Allocated storage"
   default     = 100
+}
+
+variable "multi_az" {
+  type        = string
+  description = "Enable multi-az."
+  default     = "false"
+}
+
+variable "performance_insights_enabled" {
+  type        = string
+  description = "Enable performance insights"
+  default     = "false"
+}
+
+variable "enabled_cloudwatch_logs_exports" {
+  type        = string
+  description = "Enable cloudwatch log exports"
+  default     = "false"
+}
+
+variable "backup_retention_period" {
+  type        = string
+  description = "Backup retention period."
+  default     = "1"
+}
+
+variable "skip_final_snapshot" {
+  type        = string
+  description = "Skip final snapshot."
+  default     = "false"
+}
+
+variable "storage_encrypted" {
+  type        = string
+  description = "Encrypt storage."
+  default     = "false"
+}
+
+variable "maintenance_window" {
+  type        = string
+  description = "Maintenance window."
+  default     = "Mon:00:00-Mon:03:00"
+}
+
+variable "backup_window" {
+  type        = string
+  description = "Backup window."
+  default     = "03:00-06:00"
 }

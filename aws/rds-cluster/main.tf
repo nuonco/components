@@ -7,19 +7,30 @@ module "db" {
   engine_version    = "15"
   instance_class    = var.instance_class
   allocated_storage = var.allocated_storage
-  port              = var.port
-  db_name           = var.db_name
 
-  username                    = var.db_user
+  port     = var.port
+  db_name  = var.db_name
+  username = var.db_user
+
   manage_master_user_password = true
 
   iam_database_authentication_enabled = local.iam_database_authentication_enabled
   apply_immediately                   = local.apply_immediately
 
-  deletion_protection    = local.deletion_protection
   create_db_subnet_group = false
 
-  multi_az               = false
+  maintenance_window = var.maintenance_window
+  backup_window      = var.backup_window
+
+  performance_insights_enabled    = local.performance_insights_enabled
+  enabled_cloudwatch_logs_exports = local.enabled_cloudwatch_logs_exports
+
+  backup_retention_period = var.backup_retention_period
+  skip_final_snapshot     = local.skip_final_snapshot
+  deletion_protection     = local.deletion_protection
+  storage_encrypted       = local.storage_encrypted
+
+  multi_az               = local.multi_az
   subnet_ids             = local.subnet_ids
   db_subnet_group_name   = var.subnet_group_id
   vpc_security_group_ids = [resource.aws_security_group.allow_psql.id]

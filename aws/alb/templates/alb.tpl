@@ -16,8 +16,8 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '2'
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
     alb.ingress.kubernetes.io/healthy-threshold-count: '2'
-    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.domain_certificate }}
-    external-dns.alpha.kubernetes.io/hostname: {{ .Values.domain }}
+    alb.ingress.kubernetes.io/certificate-arn: "{{ .Values.domain_certificate }}"
+    external-dns.alpha.kubernetes.io/hostname: "{{ .Values.domain }}"
 spec:
   ingressClassName: alb
   rules:
@@ -27,6 +27,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.service_name }}
+                name: "{{ .Values.service_name }}"
                 port:
                   number: {{ .Values.service_port | default "3000" }}

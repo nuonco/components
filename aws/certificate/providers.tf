@@ -1,9 +1,9 @@
 provider "aws" {
-  region = var.region
+  region = data.external.env.result.region
 
   default_tags {
     tags = {
-      "install.nuon.co/id"     = var.install_id
+      "install.nuon.co/id"     = data.external.env.result.region
       "component.nuon.co/name" = "certificate"
     }
   }
